@@ -2,22 +2,33 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 
+//  app initailaize
+const app = express();
+
 //port define
 const port = process.env.port || 5000;
 
-//  app initailaize
-const app = express();
+//  view engine set with ejs
+app.set('view engine','ejs');
+
+// PollController require 
+const pollController = require('./PollController');
 
 // middleware use
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//Poll create Route
+app.get("/create", pollController.createPollGetController);
+
+//Poll post Route
+app.post("/create", pollController.createPollPostController);
+
+
 //Root Route
 app.get("/", (req, res) => {
-  res.json({
-    message: "I am Root Route",
-  });
+  res.render('home');
 });
 
 // database conncet and server listen
