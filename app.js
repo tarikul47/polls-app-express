@@ -19,11 +19,18 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//Poll create Route
-app.get("/create", pollController.pollGetController);
+//Poll root Route
+app.get("/", pollController.pollGetController);
 
 //Poll post Route
 app.post("/create", pollController.pollPostController);
+
+//Single poll Route
+app.get("/poll/:id", pollController.viewPollSingleController);
+
+
+//Single poll vote Route
+app.post("/poll/:id", pollController.viewPollPostController);
 
 
 //Root Route
@@ -33,7 +40,7 @@ app.get("/", (req, res) => {
 
 // database conncet and server listen
 mongoose
-  .connect("mongodb://localhost:27017/test")
+  .connect("mongodb://localhost:27017/cast")
   .then(() => {
     app.listen(port, () => {
       console.log("Application is ready to serve on port", port);
