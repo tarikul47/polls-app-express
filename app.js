@@ -20,15 +20,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Poll create Route
-app.get("/create", pollController.createPollGetController);
+app.get("/create", pollController.pollGetController);
 
 //Poll post Route
-app.post("/create", pollController.createPollPostController);
+app.post("/create", pollController.pollPostController);
 
 
 //Root Route
 app.get("/", (req, res) => {
-  res.render('home');
+  res.render('create');
 });
 
 // database conncet and server listen

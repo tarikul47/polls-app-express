@@ -1,7 +1,7 @@
-exports.createPollGetController = (req, res) => {
+exports.pollGetController = (req, res) => {
     res.render('create');
 };
-exports.createPollPostController = (req, res) => {
+exports.pollPostController = (req, res) => {
     console.log(req.body);
     res.render('create');
 };
