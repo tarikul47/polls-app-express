@@ -1,5 +1,4 @@
 const express = require("express");
-const { MongoClient } = require("mongodb");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 
