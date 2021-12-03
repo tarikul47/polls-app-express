@@ -1,6 +1,11 @@
 const express = require("express");
+const { MongoClient } = require("mongodb");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+
+// for env file support
+require("dotenv").config();
+
 
 //  app initailaize
 const app = express();
@@ -40,7 +45,7 @@ app.get("/", (req, res) => {
 
 // database conncet and server listen
 mongoose
-  .connect("mongodb://localhost:27017/cast")
+  .connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.dyvua.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`)
   .then(() => {
     app.listen(port, () => {
       console.log("Application is ready to serve on port", port);
